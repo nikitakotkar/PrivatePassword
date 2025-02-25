@@ -1,16 +1,21 @@
 const express = require("express");
 const app = express();
-const PORT = 5000;
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const AuthRouter = require("./Routes/AuthRouter");
 
-// Middleware to parse JSON
-app.use(express.json());
+require("dotenv").config();
+require("./Config/config");
+const PORT = process.env.PORT || 8080;
 
-// Sample API Route
 app.get("/", (req, res) => {
-    res.send("Welcome to the Node.js Backend!");
+  res.send("Running server");
 });
 
-// Start the Server
+app.use(bodyParser.json());
+app.use(cors());
+app.use("/auth", AuthRouter);
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server is running on ${PORT}`);
 });
