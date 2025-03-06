@@ -38,7 +38,7 @@ function Signup() {
       return handleError('Passwords do not match');
     }
     try {
-        const url = `https://deploy-mern-app-1-api.vercel.app/auth/signup`;
+        const url = `http://localhost:1234/auth/signup`;
         const response = await fetch(url, {
             method: "POST",
             headers: {
